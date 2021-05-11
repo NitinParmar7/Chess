@@ -1,0 +1,37 @@
+{
+  "name": "chess",
+  "version": "1.0.0",
+  "description": "chess game",
+  "main": "src/index.html",
+  "scripts": {
+    "build": "parcel build src/index.html --public-url ./ --experimental-scope-hoisting",
+    "watch": "parcel watch src/index.html",
+    "start": "parcel serve src/index.html",
+    "clean": "rm -v dist/*"
+  },
+  "author": "Nitin",
+  "license": "ISC",
+  "dependencies": {
+    "js-chess-engine": "^0.11.3",
+    "phaser": "^3.54.0"
+  },
+  "devDependencies": {
+    "cssnano": "^5.0.2",
+    "parcel-plugin-clean-easy": "^1.0.2",
+    "parcel-plugin-static-files-copy": "^2.6.0",
+    "postcss": "^8.2.14",
+    "typescript": "^4.2.4"
+  },
+  "parcelCleanPaths": [
+    "dist"
+  ],
+  "staticFiles": {
+    "staticPath": [
+      {
+        "staticPath": "src/assets",
+        "staticOutDir": "assets"
+      }
+    ],
+    "watcherGlob": "**"
+  }
+}
