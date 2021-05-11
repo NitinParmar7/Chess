@@ -1,11 +1,10 @@
 import { ASSET_PATH } from "../assetpath";
 import { GAME_HEIGHT, GAME_WIDTH } from "../config";
-import Debug, { COLUMNS, DEBUG, ROWS, GAME_BOARD_CONFIG } from "../data/data";
+import Debug, { COLUMNS, DEBUG, ROWS, GAME_BOARD_CONFIG, SETTINGS } from "../data/data";
 import ChessPiece from "./chesspiece";
 import GameScene from "../scenes/gamescene";
 import GameEventEmitter, { GAME_EVENTS } from "../util/gameevent";
-import { Game, move, status, moves, aiMove, getFen } from 'js-chess-engine'
-//import jsChessEngine = require('js-chess-engine');
+import jsChessEngine = require('js-chess-engine');
 
 class BoardElementPosition {
   column: string;
@@ -14,7 +13,7 @@ class BoardElementPosition {
   position: Phaser.Math.Vector2;
   board: Board;
   FEN: string;
-  circle: Phaser.GameObjects.Arc;
+  circle: Phaser.GameObjects.Image;
   chesspiece: ChessPiece;
   constructor(
     columnToSet: string,
@@ -28,14 +27,14 @@ class BoardElementPosition {
     this.position = positionToSet;
     this.board = boardToSet;
     this.FEN = this.column + this.row;
-    this.circle = this.board.scene.add.circle(
+    this.circle = this.board.scene.add.image(
       this.position.x,
       this.position.y,
-      10,
-      0xff0000,
-      1
+      ASSET_PATH.SPRITE.CIRCLE.key
     );
     this.circle.setVisible(false);
+    this.circle.setInteractive();
+    this.circle.setDepth(10);
     this.board.boardData.boardElements.push(this);
   }
 
@@ -79,6 +78,7 @@ export default class Board extends Phaser.GameObjects.GameObject {
   gameScene: GameScene;
   gameHasStarted: boolean;
   chessGame : any;
+  activeCircle : Phaser.GameObjects.Image[];
 
   constructor(scene: Phaser.Scene, type: string) {
     super(scene, type);
@@ -88,6 +88,7 @@ export default class Board extends Phaser.GameObjects.GameObject {
   }
 
   init() {
+    this.activeCircle = [];
     this.BindGameEvents();
     this.board = this.scene.add.image(
       GAME_WIDTH * 0.5,
@@ -97,7 +98,7 @@ export default class Board extends Phaser.GameObjects.GameObject {
     this.board.setVisible(true);
     this.InitBoardData();
     this.InitPieces();
-    this.chessGame = new Game();
+    this.chessGame = new jsChessEngine.Game();
   }
 
   BindGameEvents() {
@@ -560,25 +561,63 @@ export default class Board extends Phaser.GameObjects.GameObject {
 
   OnChessPieceSelected(element: BoardElementPosition, piece: ChessPiece) {
     if (this.gameHasStarted) {
-      // Debug.Log(
-      //   this.ChessGame.getMoves({
-      //     file: element.file,
-      //     rank: parseInt(element.row),
-      //   })
-      // );
-      // let row = (parseInt(element.row));
-      // let Moves: Move[] = this.ChessGame.getMoves({
-      //   file: element.file,
-      //   rank: row,
-      // });
+      let moves : string[] = this.chessGame.moves(element.FEN);
+      console.log(moves);
+      if(moves.length > 0)
+      {
+      for (let index = 0; index < this.activeCircle.length; index++) {
+        const circle : Phaser.GameObjects.Image = this.activeCircle[index];
+        if(circle != null)
+        {
+        circle.setVisible(false);
+        circle.off('pointerdown');
+        }
+      }
+      this.activeCircle.length = 0;
+      moves.forEach(move => {
+        let targetElement: BoardElementPosition = this.boardData.getElement(move);
+        targetElement.circle.setVisible(true).on('pointerdown', ()=>{ this.MovePieceToPos(targetElement, element,  piece) }, this);
+        this.activeCircle.push(targetElement.circle);
+      });
+    }
+    }
+  }
 
-      // console.log(Moves);
+  MovePieceToPos( targetElement: BoardElementPosition, currentElement: BoardElementPosition,  piece : ChessPiece){
+    console.log("Chess Pirce: " + piece.name + " Current: " + currentElement.FEN + " Target: " + targetElement.FEN);
+    this.chessGame.move(currentElement.FEN, targetElement.FEN);
+    currentElement.RemoveChessPiece();
 
-      // Moves.forEach((Move) => {
-      //    let chessLocation  = COLUMNS[Move.to.file] + "" + ROWS[Move.to.rank];
-      //    let Element = this.boardData.getElement(chessLocation);
-      //    Element.circle.setVisible(true);
-      // });
+    piece.setPosition(targetElement.position.x, targetElement.position.y);
+    for (let index = 0; index < this.activeCircle.length; index++) {
+      const circle : Phaser.GameObjects.Image = this.activeCircle[index];
+      circle.setVisible(false);
+      circle.off('pointerdown');
+    }
+    this.chessGame.setPiece(targetElement.FEN, piece.name); 
+    if(targetElement.chesspiece != null)
+    {
+      targetElement.chesspiece.destroy();
+      targetElement.RemoveChessPiece();
+      this.chessGame.removePiece(targetElement.FEN);
+    }
+    targetElement.AssignChessPiece(piece);
+    console.log(this.chessGame);
+  }
+
+  MoveAI()
+  {
+    let move = this.chessGame.aiMove(SETTINGS.aiLevel);
+    let moveString = JSON.stringify(move);
+    if(moveString.length > 0)
+    {
+      let from = moveString.slice(2, 4);
+      let to = moveString.slice(7,9);
+      let targetElement: BoardElementPosition = this.boardData.getElement(to);
+      let currentElement: BoardElementPosition = this.boardData.getElement(from);
+      this.MovePieceToPos(targetElement, currentElement,  currentElement.chesspiece);
     }
   }
 }
+
+

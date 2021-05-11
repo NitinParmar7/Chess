@@ -14,5 +14,6 @@ export const ASSET_PATH = {
     n: { key: "n", path: "assets/sprites/n_B.png" },
     P: { key: "P", path: "assets/sprites/P_W.png" },
     p: { key: "p", path: "assets/sprites/p_B.png" },
+    CIRCLE: { key: "circle", path: "assets/sprites/circle.png"}
   },
 };

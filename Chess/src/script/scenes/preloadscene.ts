@@ -24,6 +24,7 @@ export default class PreloadScene extends Phaser.Scene {
     this.load.image(ASSET_PATH.SPRITE.n.key, ASSET_PATH.SPRITE.n.path);
     this.load.image(ASSET_PATH.SPRITE.P.key, ASSET_PATH.SPRITE.P.path);
     this.load.image(ASSET_PATH.SPRITE.p.key, ASSET_PATH.SPRITE.p.path);
+    this.load.image(ASSET_PATH.SPRITE.CIRCLE.key, ASSET_PATH.SPRITE.CIRCLE.path);
   }
 
   create() {

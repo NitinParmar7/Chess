@@ -1,5 +1,6 @@
 export const GAME_EVENTS = {
   GAME_HAS_STARTED: { key: "gameHasStarted", clear: true },
+  TURN_HAS_ENDED: {key: "turnHasEnded", clear: true}
 };
 
 type gameEvent = { key: string; clear: boolean };

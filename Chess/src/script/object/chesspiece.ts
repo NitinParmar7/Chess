@@ -3,6 +3,7 @@ import { GetTextureFromType, ROWS, TYPES } from "../data/data";
 
 export default class ChessPiece extends Phaser.GameObjects.Image {
   type: string;
+  name: string;
   constructor(
     scene: Phaser.Scene,
     x: number,
@@ -11,6 +12,7 @@ export default class ChessPiece extends Phaser.GameObjects.Image {
     row: number
   ) {
     super(scene, x, y, type);
+    this.name = type;
     if (type == type.toUpperCase()) {
       this.type = TYPES.WHITE;
     } else {

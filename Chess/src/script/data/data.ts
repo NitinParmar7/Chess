@@ -18,6 +18,11 @@ export const SETTINGS = {
   sound: true,
 };
 
+export const GAMETYPE = {
+  PvA : 0,
+  PVP : 1 
+}
+
 export const GAME_BOARD_CONFIG = {
   turn: TYPES.WHITE,
   pieces: [
@@ -86,3 +91,5 @@ export function GetTextureFromType(type: string): string {
     return type + "_B.png";
   }
 }
+
+
