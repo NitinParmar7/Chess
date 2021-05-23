@@ -1,4 +1,4 @@
-import { game } from "../main";
+import { game } from "../../main";
 import { SCENES } from "../config";
 import { ASSET_PATH } from "../assetpath";
 
@@ -25,9 +25,11 @@ export default class PreloadScene extends Phaser.Scene {
     this.load.image(ASSET_PATH.SPRITE.P.key, ASSET_PATH.SPRITE.P.path);
     this.load.image(ASSET_PATH.SPRITE.p.key, ASSET_PATH.SPRITE.p.path);
     this.load.image(ASSET_PATH.SPRITE.CIRCLE.key, ASSET_PATH.SPRITE.CIRCLE.path);
+    this.load.image(ASSET_PATH.SPRITE.MENUBG.key, ASSET_PATH.SPRITE.MENUBG.path);
+    this.load.image(ASSET_PATH.SPRITE.PLAYBTN.key, ASSET_PATH.SPRITE.PLAYBTN.path);
   }
 
   create() {
-    this.scene.start(SCENES.GAME);
+    this.scene.start(SCENES.MENU);
   }
 }

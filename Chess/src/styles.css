@@ -1,4 +1,4 @@
-/* * {
+*{
 	margin: 0;
 	padding: 0;
 	overflow: hidden;
@@ -6,13 +6,5 @@
 
 body {
 	background-color: black; /*#20c9ed;*/
-} */
+} 
 
-/* canvas {
-	display: block;
-	margin: 0;
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -50%);
-} */

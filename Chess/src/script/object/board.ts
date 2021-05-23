@@ -4,7 +4,7 @@ import Debug, { COLUMNS, DEBUG, ROWS, GAME_BOARD_CONFIG, SETTINGS } from "../dat
 import ChessPiece from "./chesspiece";
 import GameScene from "../scenes/gamescene";
 import GameEventEmitter, { GAME_EVENTS } from "../util/gameevent";
-import jsChessEngine = require('js-chess-engine');
+import { Game, move, status, moves, aiMove, getFen } from 'js-chess-engine'
 
 class BoardElementPosition {
   column: string;
@@ -40,6 +40,7 @@ class BoardElementPosition {
 
   AssignChessPiece(piece: ChessPiece) {
     this.chesspiece = piece;
+    this.chesspiece.SetFEN(this.FEN);
   }
 
   RemoveChessPiece() {
@@ -98,7 +99,7 @@ export default class Board extends Phaser.GameObjects.GameObject {
     this.board.setVisible(true);
     this.InitBoardData();
     this.InitPieces();
-    this.chessGame = new jsChessEngine.Game();
+    this.chessGame = new Game();
   }
 
   BindGameEvents() {
@@ -552,16 +553,17 @@ export default class Board extends Phaser.GameObjects.GameObject {
       piece.setInteractive().on(
         "pointerdown",
         () => {
-          this.OnChessPieceSelected(element, piece);
+          this.OnChessPieceSelected(piece);
         },
         this
       );
     }
   }
 
-  OnChessPieceSelected(element: BoardElementPosition, piece: ChessPiece) {
+  OnChessPieceSelected(piece: ChessPiece) {
     if (this.gameHasStarted) {
-      let moves : string[] = this.chessGame.moves(element.FEN);
+      let moves : string[] = this.chessGame.moves(piece.GetFEN());
+      let element : BoardElementPosition = this.boardData.getElement(piece.GetFEN());
       console.log(moves);
       if(moves.length > 0)
       {
@@ -602,7 +604,7 @@ export default class Board extends Phaser.GameObjects.GameObject {
       this.chessGame.removePiece(targetElement.FEN);
     }
     targetElement.AssignChessPiece(piece);
-    console.log(this.chessGame);
+    GameEventEmitter.GetInstance().emit(GAME_EVENTS.TURN_HAS_ENDED.key);
   }
 
   MoveAI()
@@ -615,8 +617,18 @@ export default class Board extends Phaser.GameObjects.GameObject {
       let to = moveString.slice(7,9);
       let targetElement: BoardElementPosition = this.boardData.getElement(to);
       let currentElement: BoardElementPosition = this.boardData.getElement(from);
-      this.MovePieceToPos(targetElement, currentElement,  currentElement.chesspiece);
+      let chesspiece = currentElement.chesspiece;
+      chesspiece.setPosition(targetElement.position.x, targetElement.position.y);
+      currentElement.RemoveChessPiece();
+      if(targetElement.chesspiece != null)
+      {
+        targetElement.chesspiece.destroy();
+        targetElement.RemoveChessPiece();
+        this.chessGame.removePiece(targetElement.FEN);
+      }
+      targetElement.AssignChessPiece(chesspiece);
     }
+    GameEventEmitter.GetInstance().emit(GAME_EVENTS.TURN_HAS_ENDED.key);
   }
 }
 

@@ -4,34 +4,29 @@
   "description": "chess game",
   "main": "src/index.html",
   "scripts": {
-    "build": "parcel build src/index.html --public-url ./ --experimental-scope-hoisting",
-    "watch": "parcel watch src/index.html",
-    "start": "parcel serve src/index.html",
-    "clean": "rm -v dist/*"
+    "start": "webpack serve --mode development --entry ./src/main.ts",
+    "build": "webpack --mode production --entry ./src/main.ts --output-path ./dist/main",
+    "dev": "webpack --mode development --entry ./src/main.ts --output-path ./dist/main"
   },
   "author": "Nitin",
   "license": "ISC",
+  "devDependencies": {
+    "@babel/core": "^7.14.3",
+    "@babel/preset-env": "^7.14.2",
+    "@babel/preset-typescript": "^7.13.0",
+    "babel-loader": "^8.2.2",
+    "copy-webpack-plugin": "^9.0.0",
+    "css-loader": "^5.2.5",
+    "html-loader": "^2.1.2",
+    "html-webpack-plugin": "^5.3.1",
+    "mini-css-extract-plugin": "^1.6.0",
+    "typescript": "^4.2.4",
+    "webpack": "^5.37.1",
+    "webpack-cli": "^4.7.0",
+    "webpack-dev-server": "^3.11.2"
+  },
   "dependencies": {
     "js-chess-engine": "^0.11.3",
     "phaser": "^3.54.0"
-  },
-  "devDependencies": {
-    "cssnano": "^5.0.2",
-    "parcel-plugin-clean-easy": "^1.0.2",
-    "parcel-plugin-static-files-copy": "^2.6.0",
-    "postcss": "^8.2.14",
-    "typescript": "^4.2.4"
-  },
-  "parcelCleanPaths": [
-    "dist"
-  ],
-  "staticFiles": {
-    "staticPath": [
-      {
-        "staticPath": "src/assets",
-        "staticOutDir": "assets"
-      }
-    ],
-    "watcherGlob": "**"
   }
 }

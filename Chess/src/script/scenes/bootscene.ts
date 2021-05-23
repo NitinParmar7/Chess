@@ -1,4 +1,4 @@
-import { game } from "../main";
+import { game } from "../../main";
 import { SCENES } from "../config";
 
 export default class BootScene extends Phaser.Scene {

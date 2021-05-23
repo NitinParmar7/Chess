@@ -1,8 +1,8 @@
-import { game } from "../main";
+import { game } from "../../main";
 import { GAME_HEIGHT, GAME_WIDTH, SCENES } from "../config";
 import { ASSET_PATH } from "../assetpath";
 import Board from "../object/board";
-import { TYPES, GAMETYPE } from "../data/data";
+import { TYPES, GAMETYPE, GAME_BOARD_CONFIG } from "../data/data";
 import GameEventEmitter, { GAME_EVENTS } from "../util/gameevent";
 
 

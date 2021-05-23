@@ -4,6 +4,7 @@ import { GetTextureFromType, ROWS, TYPES } from "../data/data";
 export default class ChessPiece extends Phaser.GameObjects.Image {
   type: string;
   name: string;
+  FEN: string;
   constructor(
     scene: Phaser.Scene,
     x: number,
@@ -26,5 +27,13 @@ export default class ChessPiece extends Phaser.GameObjects.Image {
 
   GetType(): string {
     return this.type;
+  }
+
+  SetFEN(fen: string){
+    this.FEN = fen;
+  }
+
+  GetFEN(): string{
+    return this.FEN;
   }
 }
