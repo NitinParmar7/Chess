@@ -11,6 +11,7 @@ export const config: Phaser.Types.Core.GameConfig = {
   type: Phaser.AUTO,
   backgroundColor: 0x000,
   scene: [BootScene, PreloadScene,MenuScene, GameScene],
+  parent: 'game',
   scale: {
     width: GAME_WIDTH,
     height: GAME_HEIGHT,
