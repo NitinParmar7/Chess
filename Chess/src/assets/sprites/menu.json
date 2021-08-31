@@ -1,0 +1,293 @@
+{
+	"textures": [
+		{
+			"image": "menu.png",
+			"format": "RGBA8888",
+			"size": {
+				"w": 1922,
+				"h": 1341
+			},
+			"scale": 1,
+			"frames": [
+				{
+					"filename": "bg.jpg",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 1920,
+						"h": 1080
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 1920,
+						"h": 1080
+					},
+					"frame": {
+						"x": 1,
+						"y": 1,
+						"w": 1920,
+						"h": 1080
+					}
+				},
+				{
+					"filename": "splashLogo.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 476,
+						"h": 278
+					},
+					"spriteSourceSize": {
+						"x": 11,
+						"y": 12,
+						"w": 451,
+						"h": 257
+					},
+					"frame": {
+						"x": 1,
+						"y": 1083,
+						"w": 451,
+						"h": 257
+					}
+				},
+				{
+					"filename": "howtoplay.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 425,
+						"h": 68
+					},
+					"spriteSourceSize": {
+						"x": 3,
+						"y": 3,
+						"w": 420,
+						"h": 62
+					},
+					"frame": {
+						"x": 454,
+						"y": 1083,
+						"w": 420,
+						"h": 62
+					}
+				},
+				{
+					"filename": "howtoplayover.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 425,
+						"h": 68
+					},
+					"spriteSourceSize": {
+						"x": 3,
+						"y": 3,
+						"w": 420,
+						"h": 62
+					},
+					"frame": {
+						"x": 454,
+						"y": 1147,
+						"w": 420,
+						"h": 62
+					}
+				},
+				{
+					"filename": "leader.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 425,
+						"h": 68
+					},
+					"spriteSourceSize": {
+						"x": 3,
+						"y": 3,
+						"w": 420,
+						"h": 62
+					},
+					"frame": {
+						"x": 876,
+						"y": 1083,
+						"w": 420,
+						"h": 62
+					}
+				},
+				{
+					"filename": "leaderover.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 425,
+						"h": 68
+					},
+					"spriteSourceSize": {
+						"x": 3,
+						"y": 3,
+						"w": 420,
+						"h": 62
+					},
+					"frame": {
+						"x": 454,
+						"y": 1211,
+						"w": 420,
+						"h": 62
+					}
+				},
+				{
+					"filename": "myaccount.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 425,
+						"h": 68
+					},
+					"spriteSourceSize": {
+						"x": 3,
+						"y": 3,
+						"w": 420,
+						"h": 62
+					},
+					"frame": {
+						"x": 876,
+						"y": 1147,
+						"w": 420,
+						"h": 62
+					}
+				},
+				{
+					"filename": "myaccountover.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 425,
+						"h": 68
+					},
+					"spriteSourceSize": {
+						"x": 3,
+						"y": 3,
+						"w": 420,
+						"h": 62
+					},
+					"frame": {
+						"x": 1298,
+						"y": 1083,
+						"w": 420,
+						"h": 62
+					}
+				},
+				{
+					"filename": "play.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 425,
+						"h": 68
+					},
+					"spriteSourceSize": {
+						"x": 3,
+						"y": 3,
+						"w": 420,
+						"h": 62
+					},
+					"frame": {
+						"x": 454,
+						"y": 1275,
+						"w": 420,
+						"h": 62
+					}
+				},
+				{
+					"filename": "playhover.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 425,
+						"h": 68
+					},
+					"spriteSourceSize": {
+						"x": 3,
+						"y": 3,
+						"w": 420,
+						"h": 62
+					},
+					"frame": {
+						"x": 876,
+						"y": 1211,
+						"w": 420,
+						"h": 62
+					}
+				},
+				{
+					"filename": "loadingLogo.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 312,
+						"h": 181
+					},
+					"spriteSourceSize": {
+						"x": 4,
+						"y": 4,
+						"w": 303,
+						"h": 173
+					},
+					"frame": {
+						"x": 1298,
+						"y": 1147,
+						"w": 303,
+						"h": 173
+					}
+				},
+				{
+					"filename": "loadingbarbg.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 355,
+						"h": 31
+					},
+					"spriteSourceSize": {
+						"x": 1,
+						"y": 0,
+						"w": 353,
+						"h": 30
+					},
+					"frame": {
+						"x": 876,
+						"y": 1275,
+						"w": 353,
+						"h": 30
+					}
+				},
+				{
+					"filename": "loadingbartop.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 355,
+						"h": 31
+					},
+					"spriteSourceSize": {
+						"x": 1,
+						"y": 0,
+						"w": 353,
+						"h": 30
+					},
+					"frame": {
+						"x": 876,
+						"y": 1307,
+						"w": 353,
+						"h": 30
+					}
+				}
+			]
+		}
+	],
+	"meta": {
+		"app": "https://www.codeandweb.com/texturepacker",
+		"version": "3.0",
+		"smartupdate": "$TexturePacker:SmartUpdate:77b798c12b6c0b7e227952a071fd3493:d9a899dc0f0fef789d2dcb89a4b64800:e1b68abd82547da08a80c89591506971$"
+	}
+}

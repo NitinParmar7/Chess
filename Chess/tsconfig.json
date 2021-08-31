@@ -2,8 +2,12 @@
     "compilerOptions": {
     "strict": false,
     "allowJs": true,
-
+    "outDir": "./built",
     "target": "es6",
     "module": "commonjs"
-    }
+    },
+    "exclude": [
+        "./build/**/*",
+        "./node_modules"
+    ]
 }
