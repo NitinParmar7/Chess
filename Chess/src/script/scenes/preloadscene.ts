@@ -85,6 +85,6 @@ export default class PreloadScene extends Phaser.Scene {
 
   create() {
     let data: SceneData = { sceneTitle: "Select Game Mode" };
-    this.scene.start(SCENES.GAMEMODE, data);
+    this.scene.start(SCENES.MENU, data);
   }
 }

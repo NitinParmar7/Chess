@@ -27,23 +27,23 @@ export default class GameMode extends BaseScene {
         this
       );
 
-    this.username = this.add.dom(GAME_WIDTH * 0.5, GAME_HEIGHT * 0.5, "input").setOrigin(0.5);
-    let element: HTMLInputElement = <HTMLInputElement>this.username.node;
-    let style = element.style;
-    style.width = "200px";
-    style.height = "50px";
-    element.placeholder = "enter username";
+    // this.username = this.add.dom(GAME_WIDTH * 0.5, GAME_HEIGHT * 0.5, "input").setOrigin(0.5);
+    // let element: HTMLInputElement = <HTMLInputElement>this.username.node;
+    // let style = element.style;
+    // style.width = "200px";
+    // style.height = "50px";
+    // element.placeholder = "enter username";
 
-    this.vsPlayer = this.add
-      .text(GAME_WIDTH * 0.5, GAME_HEIGHT * 0.6, "Player vs Player", {
-        fontSize: "48px",
-        fontStyle: "bold",
-      })
-      .setOrigin(0.5)
-      .setInteractive()
-      .on("pointerdown", this.OnPVPClicked, this);
+    // this.vsPlayer = this.add
+    //   .text(GAME_WIDTH * 0.5, GAME_HEIGHT * 0.6, "Player vs Player", {
+    //     fontSize: "48px",
+    //     fontStyle: "bold",
+    //   })
+    //   .setOrigin(0.5)
+    //   .setInteractive()
+    //   .on("pointerdown", this.OnPVPClicked, this);
 
-    firebaseManager.InitMatchmaking();
+    // firebaseManager.InitMatchmaking();
   }
 
   OnPVPClicked() {

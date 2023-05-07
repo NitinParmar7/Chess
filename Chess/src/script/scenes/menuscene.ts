@@ -88,6 +88,6 @@ export default class MenuScene extends Phaser.Scene {
 
   OnPlayClicked() {
     let data: SceneData = { sceneTitle: "Select Game Mode" };
-    this.scene.start(SCENES.GAMEMODE, data);
+    this.scene.start(SCENES.GAME, data);
   }
 }
